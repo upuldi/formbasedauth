@@ -1,0 +1,26 @@
+<project name="Tomcatsample" default="tomcatdeploy" basedir="."> 
+      <property name="deploy" value="deploy"/> 
+	<target name="init"> 
+		<!-- Create the time stamp --> 
+		<tstamp/> 
+		<!-- Create the build directory structure used by compile --> 
+		<mkdir dir="${deploy}"/>  
+	</target> 
+
+  
+      <target name="tomcatdeploy" depends="init">
+	     <war warfile="${deploy}/security-form-based.war" webxml="tomcat/web.xml">
+                  <fileset dir="tomcat">
+                   <exclude name="lib"/> 
+			 <exclude name="classes"/> 
+                   <exclude name="web.xml"/> 
+  
+                   </fileset>
+                  <lib dir="tomcat/lib" />
+           </war>
+      </target>
+
+	<target name="clean"> 
+		<delete dir="${deploy}"/> 
+	</target> 
+</project> 
